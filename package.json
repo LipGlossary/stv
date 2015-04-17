@@ -1,0 +1,22 @@
+{
+  "name": "stv",
+  "version": "1.0.0",
+  "description": "Single Transferable Vote counter",
+  "main": "count.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/LipGlossary/stv.git"
+  },
+  "author": "Annalise Haynes",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/LipGlossary/stv/issues"
+  },
+  "homepage": "https://github.com/LipGlossary/stv",
+  "dependencies": {
+    "require": "^2.4.17"
+  }
+}
