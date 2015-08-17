@@ -35,6 +35,34 @@ var declareWinners = function ( count, quota ) {
   return winners;
 };
 
+var pickLoser = function ( ballots, losers ) {
+  //return losers[ Math.floor( Math.random() * losers.length ) ];
+  var rank = {};
+  for ( var i = 0; i < losers.length; i++ ) {
+    rank[ losers[i] ] = 0;
+  }
+  for ( i = 0; i < ballots.length; i++ ) {
+    for ( var j = 0; j < losers.length; j++ ) {
+      var index = ballots[i].indexOf( losers[j] );
+      if ( index === -1 ) { index = 10; }
+      rank[ losers[j] ] += index;
+    }
+  }
+  var max = 0;
+  for ( candidate in rank ) {
+    if ( rank[candidate] > max ) {
+      max = rank[candidate];
+    }
+  }
+  var newLosers = new Array();
+  for ( i = 0; i < losers.length; i++ ) {
+    if ( rank[losers[i]] === max ) {
+      newLosers.push( losers[i] );
+    }
+  }
+  return newLosers[ Math.floor( Math.random() * newLosers.length ) ];
+};
+
 var pruneCount = function ( ballots, count ) {
 
   // Find minimum number of votes any candidate got
@@ -52,7 +80,7 @@ var pruneCount = function ( ballots, count ) {
   }
 
   // Pick a random loser
-  var loser = losers[ Math.floor( Math.random() * losers.length ) ];
+  var loser = pickLoser(ballots, losers);
   console.log( "Eliminating " + loser );
 
   // Remove loser from ballots and remove empty ballots
