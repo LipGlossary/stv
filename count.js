@@ -106,10 +106,11 @@ var runRound = function ( ballots, quota, count ) {
   return declareWinners( count, quota );
 };
 
-var runAll = function ( seats, ballots, count ) {
+var runAll = function ( seats, ballots, count ) { 
   var quota = newQuota( ballots.length, seats );
   var winners = runRound( ballots, quota, count );
   if ( winners.length === seats ) { return winners; }
+  if ( Object.keys( count ).length <= seats ) { return Object.keys( count ); }
   pruneCount( ballots, count );
   return runAll( seats, ballots, count);
 };
