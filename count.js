@@ -3,7 +3,7 @@ var seats   = vote.seats;
 var ballots = vote.ballots;
 
 var count = ( function ( ticket ) {
-  var self = new Object();
+  var self = {};
   for( var i = 0; i < ticket.length; i++ ) {
     self[ ticket[i] ] = 0;
   }
@@ -26,7 +26,7 @@ var newCount = function ( count, ballots ) {
 };
 
 var declareWinners = function ( count, quota ) {
-  var winners = new Array();
+  var winners = [];
   for ( candidate in count ) {
     if ( count[candidate] >= quota ) {
       winners.push( candidate );
